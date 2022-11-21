@@ -1,6 +1,6 @@
 
 import './App.css';
-import { DailyToDoList } from './Components/Daily-ToDoList';
+import  DailyToDoList from './Components/Daily-ToDoList';
 
 function App() {
   return (

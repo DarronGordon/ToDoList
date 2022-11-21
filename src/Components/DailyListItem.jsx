@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import { ListItem } from "./ListItem";
+import "./StylingComponents/ListStyle.scss";
 
 
 export const DailyListItem = (props) => {

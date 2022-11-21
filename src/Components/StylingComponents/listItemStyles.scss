@@ -1,0 +1,25 @@
+
+.listItem-container{
+    display: flex;
+    flex-direction: row;
+    background-color: aqua;
+    justify-content: center;
+    margin: 1rem auto;
+    width: 80vw;
+}
+
+
+ .listItem{
+    flex: 1 1 0;
+    width: 0;
+    flex-grow: 1;
+    text-align: center;
+    border: 1px solid black;
+ }
+
+ .listItem-checkbox{
+  width: 100%;
+ }
+
+ 
+ 

@@ -1,35 +1,48 @@
 import { useState } from "react";
 import { DailyListItem } from "./DailyListItem";
-import { CreateListItems } from "./CreateListItems";
+import  ListItem  from "./ListItem";
 
-export const DailyToDoList = (props) =>
+import "./StylingComponents/ListStyle.scss";
+
+const dummyListItems=[
+    {
+        id:'1',
+        title:'Wake-Up',
+        discription:'Get out of bed!!!'
+    },
+    {
+        id:'2',
+        title:'Let dogs out.',
+        discription:'Let the dogs into the garden.'
+    },
+];
+
+function DailyToDoList()
 {
-   let listItems=[{}];
-    const [listItemData, setListItemDetails] = useState({title:"", discription:"", id:""});
-    const saveNewListItemHandler = (enteredListItem) =>{
-        setListItemDetails({
+    const [listItemsList, SetListItemsList]= useState(dummyListItems);
+
+    const saveNewListItemHandler = (enteredListItem ) => {
+        const newListData={
         ...enteredListItem,
         id:Math.random().toString()
+      };
+  
+      SetListItemsList((prevList) => {
+      return [... prevList, newListData]
       });
-      listItems.push(...listItemData) 
-      console.log(listItems);
-    };
-
+    }
+    
     return(
         <div className="DailyToDoList">
       
-        
         <DailyListItem onSaveNewListItem={saveNewListItemHandler}></DailyListItem>
 
         <h3>Tasks To DO!</h3>
 
-        <div className="List">
-
-        <CreateListItems listItems={listItems}/>
-
+{listItemsList.map(itemData => <ListItem title={itemData.title} discription={itemData.discription} /> )}
+   
         </div>
-
-       
-        </div>
-    )
+    );
 }
+
+export default DailyToDoList;
