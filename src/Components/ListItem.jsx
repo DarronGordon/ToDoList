@@ -11,6 +11,9 @@ function ListItem (props){
         <div className="listItem listItem-checkbox">
         <input type="checkbox" id="ListItem-Done" name="ListItem-Done" />
         </div> 
+        <div className="listItem listItem-dueDate">
+        <h5>{props.dueDate}</h5>
+        </div>
         <div className="listItem listItem-title">
         <h5>{props.title}</h5>
         </div>

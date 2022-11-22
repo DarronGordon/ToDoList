@@ -3,12 +3,14 @@ import { DailyListItem } from "./DailyListItem";
 import  ListItem  from "./ListItem";
 
 import "./StylingComponents/ListStyle.scss";
+const d = new Date(2022,5,22);
 
 const dummyListItems=[
     {
         id:'1',
         title:'Wake-Up',
-        discription:'Get out of bed!!!'
+        discription:'Get out of bed!!!',
+        dueDate:d
     },
     {
         id:'2',
@@ -17,8 +19,9 @@ const dummyListItems=[
     },
 ];
 
-function DailyToDoList()
+function Daily()
 {
+    
     const [listItemsList, SetListItemsList]= useState(dummyListItems);
 
     const saveNewListItemHandler = (enteredListItem ) => {
@@ -39,10 +42,10 @@ function DailyToDoList()
 
         <h3>Tasks To DO!</h3>
 
-{listItemsList.map(itemData => <ListItem title={itemData.title} discription={itemData.discription} /> )}
+{listItemsList.map(itemData => <ListItem title={itemData.title} discription={itemData.discription} dueDate={itemData.dueDate} /> )}
    
         </div>
     );
 }
 
-export default DailyToDoList;
+export default Daily;
