@@ -1,48 +1,69 @@
 import { useState } from "react";
-import { DailyListItem } from "./DailyListItem";
+import { AddListItem } from "./AddListItem";
 import  ListItem  from "./ListItem";
 
 import "./StylingComponents/ListStyle.scss";
 const d = new Date(2022,5,22);
-
 const dummyListItems=[
     {
-        id:'1',
+        key:'1',
         title:'Wake-Up',
         discription:'Get out of bed!!!',
-        dueDate:d
+        dueDate:"05-12-2022"
     },
     {
-        id:'2',
+        key:'2',
         title:'Let dogs out.',
-        discription:'Let the dogs into the garden.'
+        discription:'Let the dogs into the garden.',
+        dueDate:"05-12-2022"
     },
 ];
 
 function Daily()
 {
     
+    
     const [listItemsList, SetListItemsList]= useState(dummyListItems);
-
+    
     const saveNewListItemHandler = (enteredListItem ) => {
         const newListData={
         ...enteredListItem,
-        id:Math.random().toString()
+        key:Math.random().toString()
       };
   
       SetListItemsList((prevList) => {
       return [... prevList, newListData]
       });
     }
-    
-    return(
-        <div className="DailyToDoList">
-      
-        <DailyListItem onSaveNewListItem={saveNewListItemHandler}></DailyListItem>
 
+    let showAddListFormDrop = false ;  
+    const toggleListForm = () =>{
+       showAddListFormDrop = showAddListFormDrop ? false : true;
+       if(showAddListFormDrop===true)
+       {
+        document.querySelector("#alif").style.display = "flex";
+     
+       }
+       else if(showAddListFormDrop===false)
+       {
+        
+        document.querySelector("#alif").style.display = "none";
+       }
+
+    }
+
+    return(
+        <div className="DailyToDoList" >
+
+        <div className="addListItemForm-Container" id="alif">
+      
+      <AddListItem className='addListForm' onSaveNewListItem={saveNewListItemHandler} ></AddListItem>
+
+        </div>
+        <button onClick={toggleListForm}>Create new Task!!!</button>
         <h3>Tasks To DO!</h3>
 
-{listItemsList.map(itemData => <ListItem title={itemData.title} discription={itemData.discription} dueDate={itemData.dueDate} /> )}
+{listItemsList.map(itemData => <ListItem title={itemData.title} discription={itemData.discription} dueDate={itemData.dueDate} key={itemData.key} /> )}
    
         </div>
     );

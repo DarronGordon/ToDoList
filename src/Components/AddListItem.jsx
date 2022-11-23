@@ -3,9 +3,8 @@ import React from "react";
 import "./StylingComponents/ListStyle.scss";
 
 
-export const DailyListItem = (props) => {
+export const AddListItem = (props) => {
     const date = new Date();
-    const d = date.setFullYear(date.getFullYear, date.getMonth, date.getDate);
     const[items, setNewListItems] = useState({title:"", discription:"" , dueDate:''});
 
     const newDailyListItemDisc = (e) =>{
@@ -23,9 +22,16 @@ export const DailyListItem = (props) => {
     }
 
     const newDailyListItemDueDate = (e) =>{
+        const value = e.target.value;
+        const splitValue = value.split('-');
+        const da = splitValue[2];
+        const month = splitValue[1];
+        const year = splitValue[0];
+        const newDate = da + '-' + month + '-' + year;
+
         setNewListItems({
             ...items,
-            dueDate:e.target.value,
+            dueDate:newDate,
         })
     }
 
@@ -37,7 +43,7 @@ export const DailyListItem = (props) => {
 
 
     return(
-        <div className="CreateNew-DailyListItem">
+        <div className="CreateNew-DailyListItem " >
         
         <form onSubmit={AddListItem} className=" CreateNew-DailyListItemForm">
         <h3>Create a new Task for the day?</h3>
@@ -49,7 +55,7 @@ export const DailyListItem = (props) => {
         <label className="listItem-Discription">Discription:</label>
         <input value={items.discription} type="text" placeholder="Discribe What Needs to be done!" onChange={newDailyListItemDisc}></input>
 
-        <label className="listItem-DueDate">Discription:</label>
+        <label className="listItem-DueDate">Due Date:</label>
         <input value={items.DueDate} type="date"  onChange={newDailyListItemDueDate}></input>
 
         <button type="submit">Submit</button>
